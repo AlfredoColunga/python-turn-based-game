@@ -18,7 +18,7 @@ class Battle:
 
 
     def _clear_terminal(self):
-        """Cleans the terminal basen on the user's operating system."""
+        """Clean the terminal basen on the user's operating system."""
         if os.name == "nt":
             os.system("cls") # Windows
         else:
@@ -26,13 +26,13 @@ class Battle:
 
 
     def _display_intro(self) -> None:
-        """Prints the intro messages to the terminal."""
+        """Print the intro messages to the terminal."""
         print(f"All your companions have died at the hands of {len(self.enemies)} enemies who broke into the wizard tower.")
         print("Lady Elianor, the plump, furry cat who leads the wizard clan, has given you only one order: Kill them all.\n")
 
 
     def _display_ending(self, player_is_alive: bool) -> None:
-        """Prints the ending messages to the terminal."""
+        """Print the ending messages to the terminal."""
         print("")
         if player_is_alive:
             print("You have successfully protected Lady Elianor and the tower.")
@@ -42,7 +42,7 @@ class Battle:
 
     def _advance_to_next_enemy(self) -> bool:
         """
-        Advances the current enemy pointer to the next enemy.
+        Advance the current enemy pointer to the next enemy.
 
         Returns:
             bool: True if successfully advanced to a next enemy,
@@ -79,5 +79,6 @@ class Battle:
             # Check if the player has been defeated
             if not self.player.player_is_alive:
                 break
+
 
         self._display_ending(self.player.player_is_alive)
