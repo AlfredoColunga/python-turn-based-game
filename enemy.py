@@ -13,32 +13,32 @@ class Enemy():
 
     @property
     def enemy_is_alive(self) -> bool:
-        """Checks if the enemy is alive."""
+        """Check if the enemy is alive."""
         return self._is_alive
 
     @property
     def has_paranoid_effect(self) -> bool:
-        """Checks if the enemy has the "Paranoid" effect active."""
+        """Check if the enemy has the "Paranoid" effect active."""
         return self._paranoid_effect
 
     @property
     def has_retrogression_effect(self) -> bool:
-        """Checks if the enemy has the "Retrogression" effect active."""
+        """Check if the enemy has the "Retrogression" effect active."""
         return self._retrogression_effect
 
 
     def apply_paranoid_effect(self) -> None:
-        """Applies the "Paranoid" effect to the enemy."""
+        """Apply the "Paranoid" effect to the enemy."""
         self._paranoid_effect = True
 
 
     def apply_retrogression_effect(self) -> None:
-        """Applies the "Retrogression" effect to the enemy."""
+        """Apply the "Retrogression" effect to the enemy."""
         self._retrogression_effect = True
 
 
     def enemy_die(self) -> None:
-        """Kills the enemy."""
+        """Kill the enemy."""
         self._is_alive = False
 
 
@@ -56,18 +56,18 @@ class Enemy():
 
 
     def _can_attack(self) -> bool:
-        """Checks if the enemy can attack basen on his paranoid effect."""
+        """Check if the enemy can attack basen on his paranoid effect."""
         return not self._paranoid_effect
 
 
     def _reset_retrogression_effect(self) -> None:
-        """Resets the retrogression effect if it is active."""
+        """Reset the retrogression effect if it is active."""
         if self._retrogression_effect:
             self._retrogression_effect = False
 
 
     def attack(self, player) -> None:
-        """Attacks the player."""
+        """Attack the player."""
         if self._can_attack():
             damage = self._calculate_damage()
 
@@ -75,5 +75,6 @@ class Enemy():
             player.take_damage(damage)
         else:
             print("The enemy cannot attack you, but you still have to destroy him.")
+
 
         self._reset_retrogression_effect()
