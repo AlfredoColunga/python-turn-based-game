@@ -44,7 +44,7 @@ class Player():
 
     @property
     def player_is_alive(self) -> bool:
-        """Checks if the player is alive."""
+        """Check if the player is alive."""
         return self._health > 0
 
 
@@ -56,27 +56,27 @@ class Player():
 
     @property
     def _mouth_available(self) -> bool:
-        """Checks if the player's mouth is available."""
+        """Check if the player's mouth is available."""
         return self._mouth_status == True
 
 
     def _disable_hands(self) -> None:
-        """Sets the player's hands to 'False'."""
+        """Set the player's hands to 'False'."""
         self._hands_status = False
 
 
     def _disable_mouth(self) -> None:
-        """Sets the player's mouth to 'False'."""
+        """Set the player's mouth to 'False'."""
         self._mouth_status = False
 
 
     def _restore_health(self) -> None:
-        """Restores the player's health to maximum."""
+        """Restore the player's health to maximum."""
         self._health = self.MAX_HEALTH
 
 
     def take_damage(self, damage: int) -> None:
-        """Applies damage to the player"""
+        """Apply damage to the player"""
         if self.player_is_alive:
             self._health = max(0, self._health - damage)
 
@@ -85,19 +85,19 @@ class Player():
 
 
     def _player_die(self) -> None:
-        """Kills the player."""
+        """Kill the player."""
         self._health = 0
         print("You died!")
 
 
     def _get_spell_by_name(self, spell_name: str) -> Spell:
-        """Returns a spell searched by its name."""
+        """Return a spell searched by its name."""
         return self._spell_lookup.get(spell_name)
 
 
     def _can_cast_spell(self, spell: Spell) -> bool:
         """
-        Checks if the player can cast a specific spell.
+        Check if the player can cast a specific spell.
 
         Returns:
             bool: True if the player's hands or mouth are available,
@@ -115,7 +115,7 @@ class Player():
 
 
     def _apply_spell_effect(self, enemy, spell_name: str, success: bool) -> None:
-        """Applies the effect of a spell based on its result."""
+        """Apply the effect of a spell based on its result."""
         if spell_name == "Agony":
             if success == True:
                 enemy.enemy_die()
@@ -158,7 +158,7 @@ class Player():
 
 
     def cast_spell(self, spell_name: str, enemy) -> bool:
-        """Tries to cast a spell.
+        """Try to cast a spell.
 
         Returns:
             bool: True if the spell could be cast (regardless of success),
@@ -179,11 +179,12 @@ class Player():
 
 
     def attack(self, enemy) -> None:
-        """Allows the player to attack the enemy."""
+        """Allow the player to attack the enemy."""
         self._view_current_health()
         self._view_spells()
 
         spell_input = input("Write your attack: ").capitalize().strip()
         print("")
+
 
         self.cast_spell(spell_input, enemy)
