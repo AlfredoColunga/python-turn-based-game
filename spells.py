@@ -28,7 +28,7 @@ class Spell:
 
 
     def _update_success_rate(self, success: bool) -> None:
-        """Updates the success rate based on the spell result."""
+        """Update the success rate based on the spell result."""
         if success:
             self.success_rate = min(
                 self.MAX_SUCCESS_RATE,
@@ -42,7 +42,7 @@ class Spell:
 
 
     def _print_cast_result(self, success: bool) -> None:
-        """Prints the cast and output message based on the spell output."""
+        """Print the cast and output message based on the spell output."""
         print(f"{self.cast_msg}\n")
         if success:
             print(self.success_msg)
@@ -52,9 +52,9 @@ class Spell:
 
     def calculate_cast_success(self) -> bool:
         """
-        Casts a spell and returns if it was successful.
+        Cast a spell and returns if it was successful.
 
-        Generates a pseudo-random number between 0.0 and 1.0
+        Generate a pseudo-random number between 0.0 and 1.0
 
         Returns:
             bool: True if the cast was successful,
@@ -64,5 +64,6 @@ class Spell:
 
         self._update_success_rate(success)
         self._print_cast_result(success)
+
 
         return success
