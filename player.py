@@ -50,7 +50,7 @@ class Player():
 
     @property
     def _hands_available(self) -> bool:
-        """Checks if the player's hands are available."""
+        """Check if the player's hands are available."""
         return self._hands_status == True
 
 
@@ -158,7 +158,8 @@ class Player():
 
 
     def cast_spell(self, spell_name: str, enemy) -> bool:
-        """Try to cast a spell.
+        """
+        Try to cast a spell.
 
         Returns:
             bool: True if the spell could be cast (regardless of success),
@@ -188,3 +189,4 @@ class Player():
 
 
         self.cast_spell(spell_input, enemy)
+
