@@ -66,7 +66,7 @@ class Battle:
             # Check if the current enemy has been defeated
             if not self.current_enemy.enemy_is_alive:
                 if self._advance_to_next_enemy():
-                    print(f"The next enemy is approaching you...\n")
+                    print("The next enemy is approaching you...\n")
                     continue
                 else:
                     print("You have defeated all the enemies!")
@@ -82,3 +82,4 @@ class Battle:
 
 
         self._display_ending(self.player.player_is_alive)
+
