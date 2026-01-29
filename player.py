@@ -8,6 +8,7 @@ class Player():
         self._health = self.MAX_HEALTH
         self._hands_status = True
         self._mouth_status = True
+        self._denial_effect = False
         self._spells = self._initialize_spells()
         self._spell_lookup = {spell.name: spell for spell in self._spells}
 
@@ -51,13 +52,19 @@ class Player():
     @property
     def _hands_available(self) -> bool:
         """Check if the player's hands are available."""
-        return self._hands_status == True
+        return self._hands_status
 
 
     @property
     def _mouth_available(self) -> bool:
         """Check if the player's mouth is available."""
-        return self._mouth_status == True
+        return self._mouth_status
+
+
+    @property
+    def has_denial_effect(self) -> bool:
+        """Check if the enemy has the "Denial" effect active."""
+        return self._denial_effect
 
 
     def _disable_hands(self) -> None:
@@ -80,14 +87,10 @@ class Player():
         if self.player_is_alive:
             self._health = max(0, self._health - damage)
 
-            if self._health <= 0:
-                self._player_die()
-
 
     def _player_die(self) -> None:
-        """Kill the player."""
+        """Set player health to 0."""
         self._health = 0
-        print("You died!")
 
 
     def _get_spell_by_name(self, spell_name: str) -> Spell:
@@ -117,30 +120,30 @@ class Player():
     def _apply_spell_effect(self, enemy, spell_name: str, success: bool) -> None:
         """Apply the effect of a spell based on its result."""
         if spell_name == "Agony":
-            if success == True:
+            if success:
                 enemy.enemy_die()
             else:
                 self._disable_hands()
 
         if spell_name == "Cadaver":
-            if success == True:
+            if success:
                 enemy.enemy_die()
             else:
                 self._disable_mouth()
 
         if spell_name == "Denial":
-            if success == True:
+            if success:
                 self._restore_health()
             else:
-                self._player_die()
+                self._denial_effect = True
 
         if spell_name == "Paranoid":
-            if success == True:
+            if success:
                 enemy.apply_paranoid_effect()
             else:
                 self._disable_hands()
 
-        if spell_name == "Retrogression" and success == True:
+        if spell_name == "Retrogression" and success:
             enemy.apply_retrogression_effect()
 
 
@@ -189,4 +192,3 @@ class Player():
 
 
         self.cast_spell(spell_input, enemy)
-

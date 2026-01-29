@@ -33,10 +33,10 @@ class Battle:
 
     def _display_ending(self, player_is_alive: bool) -> None:
         """Print the ending messages to the terminal."""
-        print("")
         if player_is_alive:
             print("You have successfully protected Lady Elianor and the tower.")
         else:
+            print("You died!\n")
             print("The enemies have reached Lady Elianor and have taken the tower.")
 
 
@@ -82,4 +82,3 @@ class Battle:
 
 
         self._display_ending(self.player.player_is_alive)
-

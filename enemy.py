@@ -42,16 +42,21 @@ class Enemy():
         self._is_alive = False
 
 
-    def _calculate_damage(self) -> int:
+    def _calculate_damage(self, player) -> int:
         """
         Calculate the damage the enemy will do in his next attack.
 
         Returns:
-            int: 0 if the "Retrogression" effect is active or a
+            int: 0 if the "Retrogression" effect is active,
+                 100 if the player has the "Retrogression" effect active or a
                  pseudo-random number between 1 and 100.
         """
         if self._retrogression_effect:
             return 0
+
+        if player.has_denial_effect:
+            return self.MAX_DAMAGE
+
         return random.randint(self.MIN_DAMAGE, self.MAX_DAMAGE)
 
 
@@ -69,12 +74,12 @@ class Enemy():
     def attack(self, player) -> None:
         """Attack the player."""
         if self._can_attack():
-            damage = self._calculate_damage()
+            damage = self._calculate_damage(player)
 
             print(f"The enemy has attacked you with {damage} points of damage.\n")
             player.take_damage(damage)
         else:
-            print("The enemy cannot attack you, but you still have to destroy him.")
+            print("The enemy cannot attack you, but you still have to destroy him.\n")
 
 
         self._reset_retrogression_effect()
