@@ -48,11 +48,6 @@ Each spell has a **dynamic success rate** that starts at 50%:
 - **Paranoid Effect**: The enemy cannot attack
 - **Retrogression Effect**: Lasts only one enemy turn
 
-## 🚀 Installation
-
-### Prerequisites
-- Python 3.6 or higher
-
 ## 📁 Project Structure
 
 ```
